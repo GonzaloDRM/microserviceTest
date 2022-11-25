@@ -17,7 +17,7 @@ public class Order {
     private String state;
     private Date creation;
     private Date update;
-    private List<Customer> customers;
+    private Customer customers;
     private String paymentMethod;
 
 }

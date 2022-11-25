@@ -25,14 +25,14 @@ public class OrderService {
     }
 
     @Transactional
-    public void save(Order order){
+    public void save(Order order, List<Product> products, Customer customer){
+        order.setCustomers(customer);
+        order.setProducts(products);
         orderRepository.save(order);
     }
 
     @Transactional(readOnly = true)
     public List<Order> listAll(){
-        List<Product> products = Arrays.asList(productRest.getForObject("http://localhost:8003/listAll", Product[].class));
-        List<Customer> customers = Arrays.asList(productRest.getForObject("http://localhost:8001/listAll", Customer[].class));
         return orderRepository.findAll();
     }
 
